@@ -22,14 +22,14 @@ angular.module('myApp', [])
 	self.list = [];
 	
 	
-	$http.get('/api/requests/').then(function(response) {
+	$http.get('/requests').then(function(response) {
         self.list = response.data;
       }, function(errResponse) {
         console.error('Error while fetching notes');
   });
 	
 	var fetchTodos = function() {
-        return $http.get('/api/requests').then(
+        return $http.get('/requests').then(
             function(response) {
           self.list = response.data;
         }, function(errResponse) {
@@ -50,7 +50,7 @@ angular.module('myApp', [])
 		request.started=self.started;
 		request.done=self.done;
 		
-			 $http.post('/api/requests', request)
+			 $http.post('/requests', request)
             .then(fetchTodos)
             .then(function(response) {
               request = null;
