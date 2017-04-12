@@ -55,7 +55,7 @@ app.post('/requests', function(req, res) {
   res.send(request);
 });
 
-app.use('/api', router);
+//app.use('/api', router);
 
 app.listen(8080);
 
