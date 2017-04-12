@@ -35,7 +35,7 @@ var requests = [
 
 var reqId = 3;
 
-app.get('/dashboard', routes.dashboard);
+//app.get('/dashboard', routes.dashboard);
 app.get('/', routes.index);
 app.get('/users', user.list);
 
