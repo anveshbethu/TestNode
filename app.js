@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 });
 
 //app.get('/dashboard', routes.dashboard);
-//app.get('/', routes.index);
+app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/requests', function(req, res) {
@@ -54,6 +54,8 @@ app.post('/requests', function(req, res) {
   requests.push(request);
   res.send(request);
 });
+
+app.use('/api', router);
 
 app.listen(8080);
 

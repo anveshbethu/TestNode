@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>		
+		<title>Optum DDI</title>
+		<style>
+table {
+    border-collapse: collapse;
+    width: 75%;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+form {
+  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  margin: 10;
+  margin-bottom:50px;
+  position: relative;
+  width: 950px;
+  height: 30px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #999;
+  border: inset 1px solid #333;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+div {
+  float: right;
+  margin: 10px 10px 10px 10px; 
+}
+</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.js"></script>	
+		<script src="bethuController.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="mainController as controller">
+    <form name="addForm" ng-submit="controller.add()">
+<!--    Eligibility Id: <input type="text" placeholder="elig id" ng-model="controller.request.eligID" required> <br>
+		Environement: <select ng-model="controller.request.env"><option ng-repeat="oo in  controller.envs">{{oo}}</option></select><br>
+    Batch jobs: <input type="text" placeholder="batches" ng-model="controller.request.batches" required> <br>
+      <input type="submit" value="Add">
+-->
+<div>
+<h2> Dashboard </h2>
+</div>
+
+<label>   <input type="text" placeholder="Eligibility Id" ng-model="controller.eligId" required></label>
+<label>   Environement:   <select placeholder="Environment" ng-model="controller.environment"><option ng-repeat="oo in  controller.envs">{{oo}}</option></select></label>
+<label>   <input type="text" placeholder="batch jobs in sequence" ng-model="controller.batches" required></label>
+<label>   <input type="text" placeholder="Optional quick note" ng-model="controller.note"></label>
+
+<label>   <input type="submit" value="Add"></label>
+  </form>
+		<table>
+			<tr ng-repeat="req in controller.list">
+				<td></td>
+				<td>{{ req.username }}</td>
+				<td>{{ req.time }}</td>
+				<td>{{ req.environment }}</td>
+				<td>{{ req.eligId }}</td>
+				<td>{{ req.batches }}</td>
+				<td>{{ req.note }}</td>
+				<td><input type="checkbox" ng-model="req.started"></td> {{ controller.request.started }}
+				<td><input type="checkbox" ng-model="req.done"></td> {{ controller.request.done }}
+				</tr>
+			</table>
+		<h1> {{ controller.request.eligID}} {{ controller.request.env }} {{ controller.request.batches }} </h1>
+		</body>
+	</html>
