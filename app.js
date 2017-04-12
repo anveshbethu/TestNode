@@ -28,8 +28,27 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var requests = [
+ {id: 1, environment: 'QA', eligId: '00101075', batches: '22, 28, 29', note: 'Time Clock', started: 'false', done: 'false'},
+ {id: 2, environment: 'DEV', eligId: '00101750', batches: '25, 27, 28', note: 'Time Clock', started: 'false', done: 'false'}
+];
+
+var reqId = 3;
+
 app.get('/', routes.index);
 app.get('/users', user.list);
+
+app.get('/requests', function(req, res) {
+  res.send(requests);
+});
+
+app.post('/requests', function(req, res) {
+  var request = req.body;
+  request.id = reqId;
+  reqId++;
+  requests.push(request);
+  res.send(request);
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
