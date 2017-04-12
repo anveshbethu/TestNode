@@ -35,8 +35,12 @@ var requests = [
 
 var reqId = 3;
 
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dashboard.html'));
+});
+
 //app.get('/dashboard', routes.dashboard);
-app.get('/', routes.index);
+//app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/requests', function(req, res) {
@@ -50,6 +54,8 @@ app.post('/requests', function(req, res) {
   requests.push(request);
   res.send(request);
 });
+
+app.listen(8080);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
